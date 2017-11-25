@@ -1,0 +1,16 @@
+inherit_from: .rubocop_todo.yml
+
+MethodLength:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/schema.rb
