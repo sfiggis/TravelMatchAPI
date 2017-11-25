@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118233321) do
+ActiveRecord::Schema.define(version: 20171125173109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,26 @@ ActiveRecord::Schema.define(version: 20171118233321) do
     t.string "name"
     t.string "codeable_type"
     t.bigint "codeable_id"
+    t.string "value"
     t.index ["codeable_type", "codeable_id"], name: "index_codes_on_codeable_type_and_codeable_id"
+  end
+
+  create_table "journey_profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.float "budget"
+    t.datetime "duration"
+    t.index ["user_id"], name: "index_journey_profiles_on_user_id"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.datetime "departure_date"
+    t.datetime "return_date"
+    t.bigint "origin_id"
+    t.bigint "destination_id"
+    t.bigint "journey_profile_id"
+    t.index ["destination_id"], name: "index_journeys_on_destination_id"
+    t.index ["journey_profile_id"], name: "index_journeys_on_journey_profile_id"
+    t.index ["origin_id"], name: "index_journeys_on_origin_id"
   end
 
   create_table "location_types", force: :cascade do |t|
@@ -52,10 +71,23 @@ ActiveRecord::Schema.define(version: 20171118233321) do
     t.bigint "location_type_id"
     t.bigint "parent_location_id"
     t.text "content"
+    t.float "gdp_ppp"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
     t.index ["parent_location_id"], name: "index_locations_on_parent_location_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "family_name"
+    t.bigint "location_id"
+    t.string "email"
+    t.index ["location_id"], name: "index_users_on_location_id"
+  end
+
   add_foreign_key "airports", "airport_types"
+  add_foreign_key "journey_profiles", "users"
+  add_foreign_key "journeys", "locations", column: "destination_id"
+  add_foreign_key "journeys", "locations", column: "origin_id"
   add_foreign_key "locations", "location_types"
+  add_foreign_key "users", "locations"
 end
