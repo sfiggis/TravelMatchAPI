@@ -40,9 +40,9 @@ RSpec.describe Location, type: :model do
 
   describe 'budget' do
     let(:location_type) { FactoryBot.create(:location_type, orphanable: false) }
-    let(:location) { FactoryBot.create(:location, gdp_ppp: 52_436_056_4) }
-    let(:usa) { FactoryBot.create(:location, gdp_ppp: 57_466_787_113_234_8) }
-    let(:home) { FactoryBot.create(:location, gdp_ppp: 46_572_639_548_37) }
+    let(:location) { FactoryBot.create(:location, gdp_ppp: 52_436.0564) }
+    let(:usa) { FactoryBot.create(:location, gdp_ppp: 57_466.787_113_2348) }
+    let(:home) { FactoryBot.create(:location, gdp_ppp: 46_572.639_54837) }
 
     it 'sets a cost per day on the country in dollars' do
       expect(usa.dollars_per_day).to eq 100.00

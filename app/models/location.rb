@@ -9,8 +9,8 @@ class Location < ApplicationRecord
   validates :parent_location, presence: true, if: :parent_required?
 
   def dollars_per_day
-    @usa_ppp = 57_466_787_113_234_8
-    return (100_00 + ((gdp_ppp - @usa_ppp) / @usa_ppp * 100)) if gdp_ppp
+    @usa = 57_466.787_113_2348
+    return 100 + ((gdp_ppp - @usa) / @usa * 100).round(2) if gdp_ppp
   end
 
   private
