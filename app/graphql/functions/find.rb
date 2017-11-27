@@ -8,7 +8,6 @@ module Functions
       { 'id' => GraphQL::Argument.define(name: 'id', type: GraphQL::ID_TYPE) }
     end
 
-
     def call(_obj, args, _ctx)
       id = args[:id]
       model.find(id)

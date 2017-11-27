@@ -5,7 +5,7 @@ module Functions
     end
 
     def type
-      @type || ("Types::#{@model.name}Type".constantize).to_list_type
+      @type || "Types::#{@model.name}Type".constantize.to_list_type
     end
 
     def call(_obj, _args, _ctx)

@@ -22,8 +22,11 @@ Shoulda::Matchers.configure do |config|
 end
 
 def schema_result(query_string, context, variables)
-  res = TravelMatchAPISchema.execute(query_string, context: context,
-                                              variables: variables)
+  res = TravelMatchAPISchema.execute(
+    query_string,
+    context:   context,
+    variables: variables
+  )
   pp res if res['errors']
   res
 end

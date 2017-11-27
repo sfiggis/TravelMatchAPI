@@ -21,7 +21,6 @@ Rspec.describe Functions::Find do
   end
 
   it 'has a description relating to the model' do
-    expect(f.description).to eq("Find Generic Model")
+    expect(f.description).to eq('Find Generic Model')
   end
 end
-
