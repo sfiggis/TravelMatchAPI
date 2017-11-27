@@ -28,6 +28,7 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'rspec-graphql_matchers'
   gem 'rspec-rails', '~> 3.6'
 end
 
