@@ -5,6 +5,7 @@ RSpec.describe Location, type: :model do
   it { should belong_to(:location_type) }
   it { should validate_presence_of(:name) }
   it { should have_many(:codes) }
+  it { should have_many(:tags) }
 
   describe 'with orphanable location type' do
     let(:location_type) { FactoryBot.create(:location_type, orphanable: true) }
@@ -39,7 +40,6 @@ RSpec.describe Location, type: :model do
   end
 
   describe 'budget' do
-    let(:location_type) { FactoryBot.create(:location_type, orphanable: false) }
     let(:location) { FactoryBot.create(:location, gdp_ppp: 52_436.0564) }
     let(:usa) { FactoryBot.create(:location, gdp_ppp: 57_466.787_113_2348) }
     let(:home) { FactoryBot.create(:location, gdp_ppp: 46_572.639_54837) }

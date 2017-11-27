@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125173109) do
+ActiveRecord::Schema.define(version: 20171127134421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,13 @@ ActiveRecord::Schema.define(version: 20171125173109) do
     t.float "gdp_ppp"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
     t.index ["parent_location_id"], name: "index_locations_on_parent_location_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "tagable_type"
+    t.bigint "tagable_id"
+    t.index ["tagable_type", "tagable_id"], name: "index_tags_on_tagable_type_and_tagable_id"
   end
 
   create_table "users", force: :cascade do |t|
