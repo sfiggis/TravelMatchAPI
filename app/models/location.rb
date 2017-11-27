@@ -5,6 +5,7 @@ class Location < ApplicationRecord
             foreign_key:    'parent_location_id'
   belongs_to :parent_location, required: false, class_name: name
   has_many :codes, as: :codeable
+  has_many :tags, as: :tagable
   validates :name, presence: true
   validates :parent_location, presence: true, if: :parent_required?
 
